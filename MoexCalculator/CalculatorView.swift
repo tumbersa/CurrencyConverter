@@ -11,77 +11,58 @@ struct CalculatorView: View {
     
     @ObservedObject var viewModel: CalculatorViewModel
     
+    @State var isPickerPresented = false
+    
     var body: some View {
         
-            List {
-                
-                HStack {
-                    
-                    VStack {
-                        Text(viewModel.topCurrency.flag)
-                            .font(.system(size: 200))
-                            .minimumScaleFactor(0.01)
-                            .aspectRatio(1, contentMode: .fit)
-                        
-                        Text(viewModel.topCurrency.rawValue)
-                            .font(.title2)
+        List {
+            CurrencyInput(
+                currency: viewModel.topCurrency,
+                amount: viewModel.topAmount,
+                calculator: viewModel.setTopAmount,
+                tapHandler: {isPickerPresented.toggle()}
+            )
+            
+            CurrencyInput(
+                currency: viewModel.bottomCurrency,
+                amount: viewModel.bottomAmount,
+                calculator: viewModel.setBottomAmount,
+                tapHandler: {isPickerPresented.toggle()}
+            )
+        }
+        .foregroundStyle(.tint)
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .sheet(isPresented: $isPickerPresented){
+            VStack(spacing: 16) {
+                Spacer()
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(.secondary)
+                    .frame(width: 60, height: 6)
+                    .onTapGesture {
+                        isPickerPresented = false
                     }
-                    .frame(height: 100)
-
-                    let topBinding = Binding<Double>(
-                        get: {
-                            viewModel.topAmount
-                        },
-                        set: {
-                            viewModel.setTopAmount($0)
-                        }
-                    )
-                    
-                    TextField("", value: topBinding, formatter: numberFormatter)
-                        .font(.largeTitle)
-                        .multilineTextAlignment(.trailing)
-                        .minimumScaleFactor(0.5)
-                        .keyboardType(.numberPad)
-                }
-                
-                HStack {
-                    
-                    VStack {
-                        Text(viewModel.bottomCurrency.flag)
-                            .font(.system(size: 200))
-                            .minimumScaleFactor(0.01)
-                            .aspectRatio(1, contentMode: .fit)
-                        
-                        Text(viewModel.bottomCurrency.rawValue)
-                            .font(.title2)
+                HStack{
+                    CurrencyPicker(currency: $viewModel.topCurrency) { _ in
+                        didChangeTopCurrency()
                     }
-                    .frame(height: 100)
-
-                    let bottomBinding = Binding<Double>(
-                        get: {
-                            viewModel.bottomAmount
-                        },
-                        set: {
-                            viewModel.setBottomAmount($0)
-                        }
-                    )
-                    
-                    TextField("", value: bottomBinding, formatter: numberFormatter)
-                        .font(.largeTitle)
-                        .multilineTextAlignment(.trailing)
-                        .minimumScaleFactor(0.5)
-                        .keyboardType(.numberPad)
+                    CurrencyPicker(currency: $viewModel.bottomCurrency) { _ in
+                        didChangeBottomCurrency()
+                    }
                 }
             }
+            .presentationDetents([.fraction(0.3)])
         }
-        
-        var numberFormatter: NumberFormatter = {
-            var nf = NumberFormatter()
-            nf.numberStyle = .decimal
-            nf.usesGroupingSeparator = false
-            nf.maximumFractionDigits = 2
-            return nf
-        }()
+    }
+    
+    private func didChangeTopCurrency(){
+        viewModel.updateTopAmount()
+    }
+    private func didChangeBottomCurrency(){
+        viewModel.updateBottomAmount()
+    }
+    
 }
 
 struct CalculatorView_Previews: PreviewProvider {
@@ -92,3 +73,10 @@ struct CalculatorView_Previews: PreviewProvider {
 //#Preview {
 //    CalculatorView(viewModel: CalculatorViewModel())
 //}
+
+extension View {
+    
+    func hideKeyboard(){
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

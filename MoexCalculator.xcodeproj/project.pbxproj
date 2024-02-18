@@ -14,6 +14,8 @@
 		A451BF492B8116FA002C33A6 /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A451BF482B8116FA002C33A6 /* CalculatorModel.swift */; };
 		A451BF4B2B8117A4002C33A6 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A451BF4A2B8117A4002C33A6 /* CalculatorViewModel.swift */; };
 		A451BF4D2B811CB3002C33A6 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A451BF4C2B811CB3002C33A6 /* CalculatorView.swift */; };
+		A4CE5B682B820C41000D74C7 /* CurrencyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE5B672B820C41000D74C7 /* CurrencyInput.swift */; };
+		A4CE5B6A2B821F95000D74C7 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE5B692B821F95000D74C7 /* CurrencyPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		A451BF482B8116FA002C33A6 /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 		A451BF4A2B8117A4002C33A6 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		A451BF4C2B811CB3002C33A6 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		A4CE5B672B820C41000D74C7 /* CurrencyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInput.swift; sourceTree = "<group>"; };
+		A4CE5B692B821F95000D74C7 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				A451BF482B8116FA002C33A6 /* CalculatorModel.swift */,
 				A451BF4A2B8117A4002C33A6 /* CalculatorViewModel.swift */,
 				A451BF4C2B811CB3002C33A6 /* CalculatorView.swift */,
+				A4CE5B672B820C41000D74C7 /* CurrencyInput.swift */,
+				A4CE5B692B821F95000D74C7 /* CurrencyPicker.swift */,
 			);
 			path = MoexCalculator;
 			sourceTree = "<group>";
@@ -148,7 +154,9 @@
 			files = (
 				A451BF472B81158D002C33A6 /* Currency.swift in Sources */,
 				A451BF4D2B811CB3002C33A6 /* CalculatorView.swift in Sources */,
+				A4CE5B6A2B821F95000D74C7 /* CurrencyPicker.swift in Sources */,
 				A451BF392B80FA35002C33A6 /* MoexCalculatorApp.swift in Sources */,
+				A4CE5B682B820C41000D74C7 /* CurrencyInput.swift in Sources */,
 				A451BF492B8116FA002C33A6 /* CalculatorModel.swift in Sources */,
 				A451BF4B2B8117A4002C33A6 /* CalculatorViewModel.swift in Sources */,
 			);
